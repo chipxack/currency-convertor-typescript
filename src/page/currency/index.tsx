@@ -7,7 +7,7 @@ import {CurrencyBlock, CurrencyListBox, ItemBox} from "./atoms/block";
 
 export const CurrencyPage = () => {
     const {$currency} = useStore($currencyModel)
-    const {fromCurrency, setFromCurrency} = useCurrencyPage()
+    const {fromCurrency, changeCurrency} = useCurrencyPage()
 
     const currencies = [
         {
@@ -35,7 +35,7 @@ export const CurrencyPage = () => {
                 select
                 label="Select"
                 value={fromCurrency}
-                onChange={(e) => setFromCurrency(e.target.value)}
+                onChange={changeCurrency}
             >
                 {currencies.map((option) => (
                     <MenuItem key={option.value} value={option.value}>

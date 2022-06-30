@@ -1,9 +1,12 @@
 import {getAll} from "../models/currency";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 export const useCurrencyPage = () => {
     const [fromCurrency, setFromCurrency] = useState<string>('UZS')
 
+    const changeCurrency = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setFromCurrency(event.target.value)
+    }
 
     useEffect(() => {
         getAll(fromCurrency)
@@ -13,8 +16,10 @@ export const useCurrencyPage = () => {
         return () => clearInterval(interval)
     }, [fromCurrency]);
 
+
     return {
         fromCurrency,
-        setFromCurrency
+        setFromCurrency,
+        changeCurrency
     }
 }
