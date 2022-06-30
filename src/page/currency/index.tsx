@@ -1,8 +1,9 @@
 import React from "react";
-import {Box, MenuItem, TextField} from "@mui/material";
+import {MenuItem, TextField} from "@mui/material";
 import {useCurrencyPage} from "../../hooks/useCurrencyPage";
 import {useStore} from "effector-react";
 import {$currencyModel} from "../../models/currency";
+import {CurrencyBlock, CurrencyListBox, ItemBox} from "./atoms/block";
 
 export const CurrencyPage = () => {
     const {$currency} = useStore($currencyModel)
@@ -24,13 +25,7 @@ export const CurrencyPage = () => {
     ];
 
     return (
-        <Box
-            sx={{
-                display: 'flex',
-                marginTop: '20px',
-                flexWrap: 'wrap'
-            }}
-        >
+        <CurrencyBlock>
             <TextField
                 sx={{
                     width: 100,
@@ -49,22 +44,18 @@ export const CurrencyPage = () => {
                 ))}
             </TextField>
 
-            <Box sx={{
-                display: 'inline-flex',
-                flexWrap: 'wrap',
-                flexDirection: 'row',
-                flex: '1',
-            }}>
+            <CurrencyListBox>
                 {
                     $currency.list?.map(item =>
-                        <Box
+                        <ItemBox
                             key={item.label}
-                            sx={{marginBottom: '10px', width: '200px'}}><span>{item.label}: </span><span>{item.value}</span>
-                        </Box>
+                        >
+                            <span>{item.label}: </span><span>{item.value}</span>
+                        </ItemBox>
                     )
                 }
-            </Box>
+            </CurrencyListBox>
 
-        </Box>
+        </CurrencyBlock>
     )
 }

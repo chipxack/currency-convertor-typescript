@@ -14,8 +14,8 @@ export const useHomePage = () => {
 
     const changeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
         setValue(Number(event.target.value.split(' ')[0]?.replace(/\D/g,"")))
-        setFromCurrency(event.target.value.split(' ')[1].toUpperCase())
-        setToCurrency(event.target.value.split(' ')[3].toUpperCase())
+        setFromCurrency(event.target.value?.split(' ')[1] ? event.target.value?.split(' ')[1].toUpperCase() : 'UZS')
+        setToCurrency(event.target.value?.split(' ')[3] ? event.target.value?.split(' ')[3].toUpperCase() : 'UZS')
     }
 
     useEffect(() => {

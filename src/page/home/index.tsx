@@ -1,5 +1,6 @@
 import React from "react";
 import {Box, TextField} from "@mui/material";
+import {HomeBox, HeadBox} from './atoms/block';
 import {useHomePage} from "../../hooks/useHomePage";
 
 export const HomePage = () => {
@@ -12,32 +13,16 @@ export const HomePage = () => {
     } = useHomePage()
 
     return (
-        <Box
-            sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                minHeight: '100vh',
-                flexDirection: 'column'
-            }}
-        >
-            <Box
-                sx={{
-                    display: 'flex',
-                    alignItems: 'center'
-                }}
-            >
+        <HomeBox>
+            <HeadBox>
                 <TextField
-                    sx={{
-                        marginRight: '10px'
-                    }}
                     placeholder='Change value'
                     onChange={changeValue}
                 />
-            </Box>
-            <Box sx={{marginTop: '10px'}}>
+            </HeadBox>
+            <Box>
                 {`${value} ${fromCurrency} равно ${getConvert()} ${toCurrency}`}
             </Box>
-        </Box>
+        </HomeBox>
     )
 }
