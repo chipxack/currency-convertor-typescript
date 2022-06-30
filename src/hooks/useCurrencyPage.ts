@@ -6,15 +6,11 @@ export const useCurrencyPage = () => {
 
 
     useEffect(() => {
-        const params = {
-            base_currency: fromCurrency,
-            currencies: 'RUB,EUR,USD,ALL,BIT'
-        }
-        getAll(params)
-        setInterval(() => {
-            getAll(params)
+        getAll(fromCurrency)
+        const interval = setInterval(() => {
+            getAll(fromCurrency)
         }, 15000)
-        return clearInterval
+        return () => clearInterval(interval)
     }, [fromCurrency]);
 
     return {

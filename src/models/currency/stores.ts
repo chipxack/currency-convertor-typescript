@@ -16,18 +16,18 @@ const $currency = createStore<DefaultStore<CurrencyStore, boolean, Options[]>>({
             data: result.data.data
         }
     })
-    // .on(fetchAll.pending, (state, loading) => ({...state, loading}))
-    // .on(fetchAll.done, (state, error) => ({
-    //     ...state,
-    //     error: error,
-    //     list: [],
-    // }))
+    .on(fetchAll.pending, (state, loading) => ({...state, loading}))
+    .on(fetchAll.done, (state, error) => ({
+        ...state,
+        error: !!error,
+        list: [],
+    }))
     .on(fetchAll.done, (state, res) => {
         const result = []
-        for (let key in res.result.data.results) {
+        for (let key in res.result.data.data) {
             result.push({
                 label: key,
-                value: res.result.data.results[key]
+                value: res.result.data.data[key].value
             })
         }
         return {

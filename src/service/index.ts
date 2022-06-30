@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiKey = 'xIclxV88PO82UuK4BXygx8Y0v6DbWRiym8dgh9vv'
+const apiKey = 'ddvaUncNQcegYsRq8H3C9ElUwZh1ahKaoCJnYdSP'
 
 export const httpClient = axios.create({
     baseURL: 'https://api.currencyapi.com/v3'
@@ -10,7 +10,7 @@ httpClient.interceptors.request.use(config => {
     const customConfig = config
     customConfig.params = {
         apikey: apiKey,
-        ...config.params
+        ...config.params,
     }
     return customConfig
 })
